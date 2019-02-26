@@ -15,8 +15,8 @@ app.get('/', (req, res) => {
       if (err) throw err;
       const jsonData = JSON.parse(data);
       const results = jsonData.filter(obj => {
-        // const regex = new RegExp(req.query.q, 'gi'); // will find users input if city or coutry name no matter where it is located in the name
-        const regex = new RegExp(`^${req.query.q}`, 'gi'); // will find users input if city or coutry name starts with it
+        // const regex = new RegExp(req.query.q, 'gi'); // will find users input if city or country name no matter where it is located in the name
+        const regex = new RegExp(`^${req.query.q}`, 'gi'); // will find users input if city or country name starts with it
         return obj.name.match(regex) || obj.country.match(regex);
       });
       // filtering to not return duplicated values
