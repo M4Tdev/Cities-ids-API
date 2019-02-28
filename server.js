@@ -5,12 +5,14 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
-let citiesList;
+// let citiesList;
 
-fs.readFile(path.join(__dirname, 'city.list.json'), (err, data) => {
-  if (err) throw err;
-  citiesList = data;
-});
+// fs.readFile(path.join(__dirname, 'city.list.json'), (err, data) => {
+//   if (err) throw err;
+//   citiesList = data;
+// });
+
+const citiesList = fs.readFileSync('./city.list.json', 'utf8');
 
 app.get('/', (req, res) => {
   if (req.query !== {} && req.query.q) {
