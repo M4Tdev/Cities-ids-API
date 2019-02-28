@@ -5,11 +5,6 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// fs.readFile(path.join(__dirname, 'city.list.json'), (err, data) => {
-//   if (err) throw err;
-//   citiesList = data;
-// });
-
 const json = fs.readFileSync('./city.list.json', 'utf8');
 
 const citiesList = JSON.parse(json);
