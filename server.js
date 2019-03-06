@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
       const regex = new RegExp(`^${req.query.q}`, 'gi'); // will find users input if city or country name starts with it
       return obj.name.match(regex) || obj.country.match(regex);
     });
+
     // filtering to not return duplicated values
     const filtered = results.filter(
       (location, i, self) =>
@@ -25,9 +26,14 @@ app.get('/', (req, res) => {
             item.name === location.name && item.country === location.country
         )
     );
+
+    if (filtered.length === 0) {
+      res.status(400).json({ err: "Can't find city with provided name" });
+    }
+
     res.status(200).json(filtered);
   } else {
-    res.status(400).json({ msg: 'Url was not found on the server' });
+    res.status(400).json({ err: 'Url was not found on the server' });
   }
 });
 
